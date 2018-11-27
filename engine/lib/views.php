@@ -742,9 +742,8 @@ function _elgg_normalize_content_layout_vars(array $vars = []) {
  *                              items => an array of unprepared menu items
  *                                       as ElggMenuItem or menu item factory options
  *                              sort_by => string or php callback
- *                                  string options: 'name', 'priority', 'title' (default),
- *                                  'register' (registration order) or a
- *                                  php callback (a compare function for usort)
+ *                                  string options: 'name', 'priority' (default), 'text'
+ *                                  or a php callback (a compare function for usort)
  *                              handler: string the page handler to build action URLs
  *                              entity: \ElggEntity to use to build action URLs
  *                              class: string the class for the entire menu.
@@ -992,7 +991,8 @@ function elgg_view_annotation(\ElggAnnotation $annotation, array $vars = []) {
  *      'full_view'        Display the full view of the entities?
  *      'list_class'       CSS class applied to the list
  *      'item_class'       CSS class applied to the list items
- *      'item_view'        Alternative view to render list items
+ *      'item_view'        Alternative view to render list items content
+ *      'list_item_view'   Alternative view to render list items
  *      'pagination'       Display pagination?
  *      'base_url'         Base URL of list (optional)
  *      'url_fragment'     URL fragment to add to links if not present in base_url (optional)
@@ -2708,14 +2708,27 @@ function _elgg_map_icon_glyph_class(array $classes, $map_sprites = true) {
 
 				$base_icon = elgg_extract($base_icon, $legacy_sprites, $base_icon);
 			}
-
-			if (array_key_exists($base_icon, $fa5)) {
-				$classes[] = $fa5[$base_icon][1];
-				$base_icon = $fa5[$base_icon][0];
-			} else if (in_array($base_icon, $brands)) {
-				$classes[] = 'fab';
-			} else {
+			
+			// map solid/regular/light iconnames to correct classes
+			if (preg_match('/.*-solid$/', $base_icon)) {
+				$base_icon = preg_replace('/(.*)-solid$/', '$1', $base_icon);
 				$classes[] = 'fas';
+			} elseif (preg_match('/.*-regular$/', $base_icon)) {
+				$base_icon = preg_replace('/(.*)-regular$/', '$1', $base_icon);
+				$classes[] = 'far';
+			} elseif (preg_match('/.*-light$/', $base_icon)) {
+				// currently light is only available in FontAwesome 5 Pro
+				$base_icon = preg_replace('/(.*)-light$/', '$1', $base_icon);
+				$classes[] = 'fal';
+			} else {
+				if (array_key_exists($base_icon, $fa5)) {
+					$classes[] = $fa5[$base_icon][1];
+					$base_icon = $fa5[$base_icon][0];
+				} else if (in_array($base_icon, $brands)) {
+					$classes[] = 'fab';
+				} else {
+					$classes[] = 'fas';
+				}
 			}
 
 			$classes[] = "fa-{$base_icon}";
