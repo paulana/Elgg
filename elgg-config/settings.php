@@ -39,7 +39,7 @@ if (!isset($CONFIG)) {
 $CONFIG->dataroot = "\home\site\data\";
 
 /**
- * The installation root URL of the site. E.g. "https://example.org/elgg/"
+ * The installation root URL of the site. E.g. 
  *
  * If not provided, this is sniffed from the Symfony Request object
  *
