@@ -36,7 +36,7 @@ if (!isset($CONFIG)) {
  *
  * @global string $CONFIG->dataroot
  */
-$CONFIG->dataroot = "D://site//data//";
+$CONFIG->dataroot = "\home\site\data\";
 
 /**
  * The installation root URL of the site. E.g. "https://example.org/elgg/"
