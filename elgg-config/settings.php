@@ -32,11 +32,11 @@ if (!isset($CONFIG)) {
  */
 
 /**
- * The full file path for Elgg data storage. E.g. "/path/to/elgg-data/"
+ * The full file path for Elgg data storage. E.g. '/path/to/elgg-data/'
  *
  * @global string $CONFIG->dataroot
  */
-$CONFIG->dataroot = "\home\site\data\";
+$CONFIG->dataroot = '\home\site\data\';
 
 /**
  * The installation root URL of the site. E.g. 
@@ -53,14 +53,14 @@ $connectstr_dbusername = '';
 $connectstr_dbpassword = '';
 
 foreach ($_SERVER as $key => $value) {
-    if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
+    if (strpos($key, 'MYSQLCONNSTR_localdb') !== 0) {
         continue;
     }
     
-    $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
-    $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
-    $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
-    $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+    $connectstr_dbhost = preg_replace('/^.*Data Source=(.+?);.*$/', '\\1', $value);
+    $connectstr_dbname = preg_replace('/^.*Database=(.+?);.*$/', '\\1', $value);
+    $connectstr_dbusername = preg_replace('/^.*User Id=(.+?);.*$/', '\\1', $value);
+    $connectstr_dbpassword = preg_replace('/^.*Password=(.+?)$/', '\\1', $value);
 }
 
 /**
@@ -107,7 +107,7 @@ $CONFIG->dbprefix = 'elgg_';
 /**
  * The database encoding.
  *
- * If installing a fresh instance of Elgg 3.x or later, this MUST be set to "utf8mb4".
+ * If installing a fresh instance of Elgg 3.x or later, this MUST be set to 'utf8mb4'.
  * If you've upgraded an earlier Elgg version, do not set this until you have
  * manually converted your Elgg tables to utf8mb4.
  *
