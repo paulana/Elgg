@@ -36,7 +36,7 @@ if (!isset($CONFIG)) {
  *
  * @global string $CONFIG->dataroot
  */
-$CONFIG->dataroot = "{{dataroot}}";
+$CONFIG->dataroot = "/data";
 
 /**
  * The installation root URL of the site. E.g. "https://example.org/elgg/"
@@ -47,26 +47,42 @@ $CONFIG->dataroot = "{{dataroot}}";
  */
 $CONFIG->wwwroot = "{{wwwroot}}";
 
+$connectstr_dbhost = '';
+$connectstr_dbname = '';
+$connectstr_dbusername = '';
+$connectstr_dbpassword = '';
+
+foreach ($_SERVER as $key => $value) {
+    if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
+        continue;
+    }
+    
+    $connectstr_dbhost = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbname = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbusername = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $value);
+    $connectstr_dbpassword = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
+}
+
 /**
  * The database username
  *
  * @global string $CONFIG->dbuser
  */
-$CONFIG->dbuser = '{{dbuser}}';
+$CONFIG->dbuser = $connectstr_dbusername;
 
 /**
  * The database password
  *
  * @global string $CONFIG->dbpass
  */
-$CONFIG->dbpass = '{{dbpassword}}';
+$CONFIG->dbpass = $connectstr_dbpassword;
 
 /**
  * The database name
  *
  * @global string $CONFIG->dbname
  */
-$CONFIG->dbname = '{{dbname}}';
+$CONFIG->dbname = $connectstr_dbname;
 
 /**
  * The database host.
@@ -75,7 +91,7 @@ $CONFIG->dbname = '{{dbname}}';
  *
  * @global string $CONFIG->dbhost
  */
-$CONFIG->dbhost = '{{dbhost}}';
+$CONFIG->dbhost = $connectstr_dbhost;
 
 /**
  * The database prefix
@@ -86,7 +102,7 @@ $CONFIG->dbhost = '{{dbhost}}';
  *
  * @global string $CONFIG->dbprefix
  */
-$CONFIG->dbprefix = '{{dbprefix}}';
+$CONFIG->dbprefix = 'elgg_';
 
 /**
  * The database encoding.
