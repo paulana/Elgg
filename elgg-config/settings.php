@@ -14,7 +14,7 @@
  * @subpackage Configuration
  */
 
-date_default_timezone_set('{{timezone}}');
+date_default_timezone_set('America/New_York');
 
 global $CONFIG;
 if (!isset($CONFIG)) {
@@ -45,7 +45,7 @@ $CONFIG->dataroot = "/data";
  *
  * @global string $CONFIG->wwwroot
  */
-$CONFIG->wwwroot = "{{wwwroot}}";
+$CONFIG->wwwroot = "D:\site\data";
 
 $connectstr_dbhost = '';
 $connectstr_dbname = '';
