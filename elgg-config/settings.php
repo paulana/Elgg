@@ -45,7 +45,7 @@ $CONFIG->dataroot = "\home\site\data\";
  *
  * @global string $CONFIG->wwwroot
  */
-$CONFIG->wwwroot = "https://bahmiso-elgg.scm.azurewebsites.net/";
+$CONFIG->wwwroot = 'https://bahmiso-elgg.scm.azurewebsites.net/';
 
 $connectstr_dbhost = '';
 $connectstr_dbname = '';
