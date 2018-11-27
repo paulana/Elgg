@@ -36,7 +36,7 @@ if (!isset($CONFIG)) {
  *
  * @global string $CONFIG->dataroot
  */
-$CONFIG->dataroot = "/data";
+$CONFIG->dataroot = "D:\site\data";
 
 /**
  * The installation root URL of the site. E.g. "https://example.org/elgg/"
@@ -45,7 +45,7 @@ $CONFIG->dataroot = "/data";
  *
  * @global string $CONFIG->wwwroot
  */
-$CONFIG->wwwroot = "D:\site\data";
+$CONFIG->wwwroot = "{{wwwroot}}";
 
 $connectstr_dbhost = '';
 $connectstr_dbname = '';
