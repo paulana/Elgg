@@ -36,7 +36,7 @@ if (!isset($CONFIG)) {
  *
  * @global string $CONFIG->dataroot
  */
-$CONFIG->dataroot = 'D:\\home\\site\\data\\';
+$CONFIG->dataroot = '/var/www/data';
 
 /**
  * The installation root URL of the site. E.g. 
