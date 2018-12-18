@@ -52,7 +52,7 @@
         "symfony/polyfill-php72": "^1.7",
         "symfony/polyfill-php71": "^1.7",
         "react/promise": "^2.5",
-        "au/au_subgroups": "dev-master"
+        "arckinteractive/roles": "~2.0"
     },
     "config": {
         "process-timeout": 0,
